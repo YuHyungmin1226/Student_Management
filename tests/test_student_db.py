@@ -29,6 +29,9 @@ class TestStudentDatabase(unittest.TestCase):
         self.conn = sqlite3.connect(self.db_path)
         self.cursor = self.conn.cursor()
         
+        # 외래키 제약조건 활성화
+        self.cursor.execute('PRAGMA foreign_keys = ON')
+        
         # 테이블 생성
         self.create_tables()
     
@@ -57,7 +60,7 @@ class TestStudentDatabase(unittest.TestCase):
                 score REAL,
                 evaluation_date DATE,
                 notes TEXT,
-                FOREIGN KEY (student_id) REFERENCES students (id)
+                FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE
             )
         ''')
         self.conn.commit()
