@@ -1,0 +1,18 @@
+# Student Management 의존성 패키지
+
+# GUI 프레임워크
+PyQt5>=5.15.0
+
+# 빌드 도구 (선택사항)
+pyinstaller>=5.0.0
+
+# 개발 도구 (선택사항)
+pytest>=7.0.0
+black>=22.0.0
+flake8>=5.0.0
+
+# 데이터베이스 (Python 기본 포함)
+# sqlite3 - Python 기본 라이브러리
+
+# 기타 유틸리티 (Python 기본 포함)
+# csv, datetime, re - Python 기본 라이브러리 
