@@ -89,11 +89,11 @@ class StudentDatabase(QWidget):
     def init_ui(self, font_size):
         main_layout = QVBoxLayout()
 
-        # 메뉴바 추가 (폰트 크기 0.5배 적용)
+        # 메뉴바 추가 (폰트 크기 1.0배 적용)
         from PyQt5.QtGui import QFont
         self.menubar = QMenuBar(self)
         menubar_font = QFont()
-        menubar_font.setPointSizeF(font_size * 0.6)
+        menubar_font.setPointSizeF(font_size * 1.0)
         self.menubar.setFont(menubar_font)
         file_menu = QMenu("파일", self)
         file_menu.setFont(menubar_font)
