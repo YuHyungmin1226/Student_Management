@@ -117,6 +117,8 @@ Thumbs.db
 
 # Student Management specific
 student.db
+config.json
+__pycache__/
 *.db
 *.sqlite
 *.sqlite3

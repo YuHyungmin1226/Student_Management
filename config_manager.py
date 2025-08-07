@@ -6,13 +6,29 @@ class ConfigManager:
     """설정 파일 관리 클래스"""
     
     def __init__(self, config_file: str = "config.json"):
-        self.config_file = config_file
+        self.data_dir = self.get_student_data_dir()
+        self.config_file = os.path.join(self.data_dir, config_file)
         self.config = self.load_config()
+
+    def get_student_data_dir(self) -> str:
+        """학생 데이터 저장 디렉토리 경로를 반환하고, 없으면 생성"""
+        # OS별 문서 폴더 경로 찾기
+        if os.name == 'nt':  # Windows
+            documents_path = os.path.join(os.path.expanduser('~'), 'Documents')
+        else:  # macOS, Linux
+            documents_path = os.path.join(os.path.expanduser('~'), 'Documents')
+
+        student_data_dir = os.path.join(documents_path, 'student')
+        
+        # 디렉토리 생성
+        os.makedirs(student_data_dir, exist_ok=True)
+        
+        return student_data_dir
     
     def load_config(self) -> Dict[str, Any]:
         """설정 파일 로드"""
         default_config = {
-            "database_path": "student.db",
+            "database_path": os.path.join(self.data_dir, "student.db"),
             "backup_auto": True,
             "backup_interval": 7,
             "default_year": 2024,

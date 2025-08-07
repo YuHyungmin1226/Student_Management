@@ -13,7 +13,7 @@ from PySide6.QtCore import Qt
 from config_manager import ConfigManager
 
 # 상수 정의
-DB_FILE = 'student.db'
+
 CSV_HEADER = ["년도", "학번", "이름", "등록일", "최근평가일", "과목", "점수", "평가일", "비고"]
 
 # 데이터 검증 함수들
@@ -80,7 +80,7 @@ class StudentDatabase(QWidget):
         
         
         # 설정에서 데이터베이스 경로 가져오기
-        db_path = self.config_manager.get('database_path', 'student.db')
+        db_path = self.config_manager.get('database_path')
         self.conn = sqlite3.connect(db_path)
         self.cursor = self.conn.cursor()
         # 외래키 제약조건 활성화
