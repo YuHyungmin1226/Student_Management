@@ -1,6 +1,6 @@
 # 🎓 Student Management - 학생 관리 시스템
 
-**Student Management**는 PyQt5와 SQLite를 사용하여 개발된 완전한 학생 관리 시스템입니다. 학생 정보와 평가 기록을 체계적으로 관리할 수 있는 GUI 애플리케이션입니다.
+**Student Management**는 PySide6와 SQLite를 사용하여 개발된 완전한 학생 관리 시스템입니다. 학생 정보와 평가 기록을 체계적으로 관리할 수 있는 GUI 애플리케이션입니다.
 
 ## ✨ 주요 기능
 
@@ -20,7 +20,7 @@
 - **UTF-8 인코딩**: 한글 완벽 지원
 
 ### 🖥️ 사용자 인터페이스
-- **PyQt5 GUI**: 현대적이고 직관적인 인터페이스
+- **PySide6 GUI**: 현대적이고 직관적인 인터페이스
 - **반응형 디자인**: 화면 크기에 따른 자동 조정
 - **화면 중앙 정렬**: 자동으로 최적 위치에 배치
 
@@ -139,7 +139,7 @@ pyinstaller --onefile --name "StudentManagement" student_database.py
 ## 🐛 문제 해결
 
 ### 일반적인 문제
-1. **PyQt5 설치 오류**: `pip install PyQt5` 명령어로 재설치
+1. **PySide6 설치 오류**: `pip install PySide6` 명령어로 재설치
 2. **데이터베이스 접근 오류**: 파일 권한 확인
 3. **한글 깨짐**: UTF-8 인코딩 확인
 
