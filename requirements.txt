@@ -1,7 +1,7 @@
 # Student Management 의존성 패키지
 
 # GUI 프레임워크
-PyQt5>=5.15.0
+PySide6>=5.15.0
 
 # 빌드 도구 (선택사항)
 pyinstaller>=5.0.0

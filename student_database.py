@@ -3,13 +3,13 @@ import sqlite3
 from datetime import datetime
 import csv
 import re
-from PyQt5.QtWidgets import (
+from PySide6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit,
     QPushButton, QTableWidget, QTableWidgetItem, QGroupBox, QHeaderView, QMessageBox,
-    QMenuBar, QMenu, QAction, QFileDialog, QComboBox
+    QMenuBar, QMenu, QFileDialog, QComboBox
 )
-from PyQt5.QtGui import QKeySequence
-from PyQt5.QtCore import Qt
+from PySide6.QtGui import QKeySequence, QFont, QAction
+from PySide6.QtCore import Qt
 from config_manager import ConfigManager
 
 # 상수 정의
@@ -58,7 +58,7 @@ class StudentDatabase(QWidget):
         # 설정 관리자 초기화
         self.config_manager = ConfigManager()
         
-        self.setWindowTitle("학생 관리 시스템 (PyQt5)")
+        self.setWindowTitle("학생 관리 시스템 (PySide6)")
         # 해상도의 80% 크기로, 화면 중앙에 위치
         screen = QApplication.primaryScreen()
         screen_geometry = screen.availableGeometry()
@@ -77,10 +77,7 @@ class StudentDatabase(QWidget):
         base_font_size = 14
         # 폰트 크기 비율을 0.8배로 줄임
         font_size = max(10, int(base_font_size * (win_height / base_height) * 0.8))
-        from PyQt5.QtGui import QFont
-        app_font = QFont()
-        app_font.setPointSize(font_size)
-        QApplication.setFont(app_font)
+        
         
         # 설정에서 데이터베이스 경로 가져오기
         db_path = self.config_manager.get('database_path', 'student.db')
@@ -120,7 +117,7 @@ class StudentDatabase(QWidget):
         main_layout = QVBoxLayout()
 
         # 메뉴바 추가 (폰트 크기 1.0배 적용)
-        from PyQt5.QtGui import QFont
+        
         self.menubar = QMenuBar(self)
         menubar_font = QFont()
         menubar_font.setPointSizeF(font_size * 1.0)
@@ -155,6 +152,7 @@ class StudentDatabase(QWidget):
         settings_menu.addAction(settings_action)
         self.menubar.addMenu(settings_menu)
         main_layout.setMenuBar(self.menubar)
+        self.setLayout(main_layout)
 
         # 학생 정보 입력
         input_group = QGroupBox("학생 정보")
@@ -234,7 +232,7 @@ class StudentDatabase(QWidget):
         self.subject_edit.setFixedWidth(num_width)
         self.score_edit.setFixedWidth(num_width)
         self.eval_date_edit.setFixedWidth(num_width)
-        from PyQt5.QtWidgets import QSizePolicy
+        from PySide6.QtWidgets import QSizePolicy
         self.notes_edit = QLineEdit()
         # 비고 입력창이 평가 추가/삭제 버튼 바로 옆까지 확장되도록 설정
         self.notes_edit.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
@@ -553,7 +551,7 @@ class StudentDatabase(QWidget):
 
     def show_settings(self):
         """설정 창 표시"""
-        from PyQt5.QtWidgets import QDialog, QFormLayout, QCheckBox, QSpinBox, QComboBox, QLineEdit, QDialogButtonBox
+        from PySide6.QtWidgets import QDialog, QFormLayout, QCheckBox, QSpinBox, QComboBox, QLineEdit, QDialogButtonBox
         
         dialog = QDialog(self)
         dialog.setWindowTitle("설정")
@@ -623,7 +621,7 @@ class StudentDatabase(QWidget):
         
         dialog.setLayout(layout)
         
-        if dialog.exec_() == QDialog.Accepted:
+        if dialog.exec() == QDialog.Accepted:
             # 설정 저장
             new_config = {
                 'database_path': db_path_edit.text(),
@@ -826,4 +824,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = StudentDatabase()
     win.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
